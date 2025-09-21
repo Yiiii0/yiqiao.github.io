@@ -18,12 +18,12 @@ export const siteConfig = {
   rambling: ramblingData,
   experience: [
     {
-      company: "Baidu",
+      company: 'Baidu - <a href="https://github.com/PaddlePaddle/PaddleOCR" target="_blank" rel="noopener noreferrer">PaddleOCR</a>',
       title: "AI & Product Engineer Intern (User & Ecosystem Growth for Revenue Generation)",
       dateRange: "May 2025 - Aug 2025",
       bullets: [
         "Drove user growth (30k+ stars, 708k downloads) for a high-performing OCR product by identifying a key market gap",
-        "Led a user-centric strategy shift and launched a new Agent MCP server to expand the user scope",
+        'Led a user-centric strategy shift and launched a new <a href="https://github.com/PaddlePaddle/PaddleOCR/blob/main/docs/version3.x/deployment/mcp_server.en.md" target="_blank" rel="noopener noreferrer">Agent MCP server</a> to expand the user scope',
       ],
     },
     {
