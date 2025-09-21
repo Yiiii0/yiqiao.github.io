@@ -1,3 +1,5 @@
+import ramblingData from './data/rambling.json';
+
 export const siteConfig = {
   name: "Yiqiao Zhou",
   title: "AI Builder & Product Engineer",
@@ -13,38 +15,7 @@ export const siteConfig = {
     "Doing the right things rather than just doing things right. Focusing on outcomes over outputs.",
   keywords: ["LLM", "Agent", "Builder", "AI native"],
   skills: ["Python", "PyTorch", "TensorFlow", "ML/DL", "SQL/Spark", "React", "Django", "AWS", "Docker", "JS", "LLM framework", "Git", "CI/CD", "Nginx", "Airflow", "Elasticsearch", "vectordatabase"],
-  rambling: [
-    {
-      date: "2025-09-19",
-      content: "Current chat interfaces are stuck in 2023 paradigms and severely limit what 2025 AI can actually deliver. We need to shift from conversational back-and-forth to command-driven agents that directly produce outcomes.",
-      tag: "AI"
-    },
-    {
-      date: "2025-08-25",
-      content: "The GPT-5 Prompting Guide is a product upgrade designed to help API users build better products.",
-      tag: "AI"
-    },
-    {
-      date: "2025-07-29",
-      content: "Working with the right people in a team with the right culture to do the right things is a heaven-sent happiness.",
-      tag: "personal"
-    },
-    {
-      date: "2025-06-18",
-      content: "At its core, AI/LLM represents a paradigm shift where natural language becomes the universal API for computational power—transforming human intent into compute resource orchestration.",
-      tag: "AI"
-    },
-    {
-      date: "2025-05-24",
-      content: "AI fundamentally boils down to decision-making systems that must own their outcomes—the real test isn't just accuracy, but accountability for consequences.",
-      tag: "AI"
-    },
-    {
-      date: "2025-03-14",
-      content: "The essence of an AI agent lies in three capabilities: multi-step decision making, tool invocation, and self-iteration—basically turning single queries into autonomous execution loops.",
-      tag: "AI"
-    }
-  ],
+  rambling: ramblingData,
   experience: [
     {
       company: "Baidu",
