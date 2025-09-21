@@ -3,3 +3,37 @@
 body {
   font-family: 'IBM Plex Mono', monospace;
 }
+
+/* Global link styling for Experience and Research sections */
+#experience a,
+#experience a:link,
+#experience a:visited,
+#research a,
+#research a:link, 
+#research a:visited {
+  color: #2563eb !important;
+  text-decoration: underline !important;
+  text-decoration-color: #2563eb !important;
+  text-decoration-thickness: 2px !important;
+  text-underline-offset: 3px !important;
+  font-weight: 700 !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+#experience a:hover,
+#research a:hover {
+  color: #1d4ed8 !important;
+  text-decoration-color: #1d4ed8 !important;
+  background-color: rgba(37, 99, 235, 0.1) !important;
+  padding: 2px 4px !important;
+  border-radius: 4px !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2) !important;
+}
+
+#experience a:active,
+#research a:active {
+  transform: translateY(0) !important;
+  background-color: rgba(37, 99, 235, 0.2) !important;
+}
