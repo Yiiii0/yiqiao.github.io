@@ -1,91 +1,143 @@
 export const siteConfig = {
-  name: "Ryan Fitzgerald",
-  title: "Senior Software Engineer",
-  description: "Portfolio website of Ryan Fitzgerald",
+  name: "Yiqiao Zhou",
+  title: "AI Builder & Product Engineer",
+  description: "Portfolio website of Yiqiao Zhou",
   accentColor: "#1d4ed8",
   social: {
-    email: "your-email@example.com",
-    linkedin: "https://linkedin.com/in/yourprofile",
-    twitter: "https://x.com/rfitzio",
-    github: "https://github.com/RyanFitzgerald",
+    email: "yiqiaoz@andrew.cmu.edu",
+    linkedin: "https://linkedin.com/in/yiqiao-zhou",
+    twitter: "",
+    github: "https://github.com/Yiiii0",
   },
   aboutMe:
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos asperiores nihil consequatur tempore cupiditate architecto natus commodi corrupti quas quasi facere est, dignissimos odit nam veniam sapiente ut, vitae eligendi ipsum dolor, nostrum ullam impedit! Corrupti ratione mollitia temporibus necessitatibus, consectetur reiciendis recusandae id, dolorum quaerat, vero pariatur. Ratione!",
-  skills: ["Javascript", "React", "Node.js", "Python", "AWS", "Docker"],
-  projects: [
+    "Doing the right things rather than just doing things right. Focusing on outcomes over outputs.",
+  keywords: ["LLM", "Agent", "Builder", "AI native"],
+  skills: ["Python", "PyTorch", "TensorFlow", "ML/DL", "SQL/Spark", "React", "Django", "AWS", "Docker", "JS", "LLM framework", "Git", "CI/CD", "Nginx", "Airflow", "Elasticsearch", "vectordatabase"],
+  rambling: [
     {
-      name: "AI Dev Roundup Newsletter",
-      description:
-        "One concise email. Five minutes. Every Tuesday. Essential AI news & trends, production-ready libraries, powerful AI tools, and real-world code examples",
-      link: "https://aidevroundup.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+      date: "2025-09-19",
+      content: "Current chat interfaces are stuck in 2023 paradigms and severely limit what 2025 AI can actually deliver. We need to shift from conversational back-and-forth to command-driven agents that directly produce outcomes.",
+      tag: "AI"
     },
     {
-      name: "Chrome Extension Mastery: Build Full-Stack Extensions with React & Node.js",
-      description:
-        "Master the art of building production-ready, full-stack Chrome Extensions using modern web technologies and best practices",
-      link: "https://fullstackextensions.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+      date: "2025-08-25",
+      content: "The GPT-5 Prompting Guide is a product upgrade designed to help API users build better products.",
+      tag: "AI"
     },
     {
-      name: "ExtensionKit",
-      description:
-        "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
-      link: "https://extensionkit.io/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+      date: "2025-07-29",
+      content: "Working with the right people in a team with the right culture to do the right things is a heaven-sent happiness.",
+      tag: "personal"
     },
+    {
+      date: "2025-06-18",
+      content: "At its core, AI/LLM represents a paradigm shift where natural language becomes the universal API for computational power—transforming human intent into compute resource orchestration.",
+      tag: "AI"
+    },
+    {
+      date: "2025-05-24",
+      content: "AI fundamentally boils down to decision-making systems that must own their outcomes—the real test isn't just accuracy, but accountability for consequences.",
+      tag: "AI"
+    },
+    {
+      date: "2025-03-14",
+      content: "The essence of an AI agent lies in three capabilities: multi-step decision making, tool invocation, and self-iteration—basically turning single queries into autonomous execution loops.",
+      tag: "AI"
+    }
   ],
   experience: [
     {
-      company: "Tech Company",
-      title: "Senior Software Engineer",
-      dateRange: "Jan 2022 - Present",
+      company: "Baidu",
+      title: "AI & Product Engineer Intern (User & Ecosystem Growth for Revenue Generation)",
+      dateRange: "May 2025 - Aug 2025",
       bullets: [
-        "Led development of microservices architecture serving 1M+ users",
-        "Reduced API response times by 40% through optimization",
-        "Mentored team of 5 junior developers",
+        "Drove user growth (30k+ stars, 708k downloads) for a high-performing OCR product by identifying a key market gap",
+        "Led a user-centric strategy shift and launched a new Agent MCP server to expand the user scope",
       ],
     },
     {
-      company: "Startup Inc",
-      title: "Full Stack Developer",
-      dateRange: "Jun 2020 - Dec 2021",
+      company: "MicroFun",
+      title: "AI & Product Engineer Intern (Operational Efficiency & Cost Reduction)",
+      dateRange: "Jul 2024 - Sep 2024",
       bullets: [
-        "Built and launched MVP product from scratch using React and Node.js",
-        "Implemented CI/CD pipeline reducing deployment time by 60%",
-        "Collaborated with product team to define technical requirements",
+        "Engineered a production-grade, automated AI translation pipeline that cut content localization time by over 70%",
+        "Slashed operational costs and accelerated global market entry for mobile games",
       ],
     },
     {
-      company: "Digital Agency",
-      title: "Frontend Developer",
-      dateRange: "Aug 2018 - May 2020",
+      company: "Vizzy AI Lab",
+      title: "AI Application Engineer Intern (Software Development)",
+      dateRange: "Dec 2024 - Jan 2025",
       bullets: [
-        "Developed responsive web applications for 20+ clients",
-        "Improved site performance scores by 35% on average",
-        "Introduced modern JavaScript frameworks to legacy codebases",
+        "Built a real-time intelligence engine with a scalable data architecture using Django, Elasticsearch, and Airflow",
+        "Helped e-commerce creators discover and analyze trending content across Most short-video platforms",
+      ],
+    },
+    {
+      company: "Linvest21",
+      title: "Machine Learning Engineer Intern (LLM Pipeline Optimization)",
+      dateRange: "May 2024 - Jul 2024",
+      bullets: [
+        "Built a foundational RAG pipeline that optimized LLM runtime by 30%",
+        "Engineered a complete CI/CD and high-availability infrastructure on AWS",
+      ],
+    },
+  ],
+  research: [
+    {
+      company: "Self-Drive Lab | New York University",
+      title: "Research Assistant, advised by Prof. Feng",
+      dateRange: "Sep 2024 - May 2025",
+      bullets: [
+        "Enhanced autonomous robot navigation accuracy by integrating VLAD with an ORB-SLAM system",
+      ],
+    },
+    {
+      company: "AI for Scientific Research Lab | New York University",
+      title: "Research Assistant, advised by Prof. Samsonau",
+      dateRange: "Jan 2024 - May 2024",
+      bullets: [
+        "Developed a U-Net machine learning workflow that improved feature extraction accuracy from raw experimental data by 25%",
+      ],
+    },
+    {
+      company: "New York University",
+      title: "TA for CS4613: Intro to Machine Learning",
+      dateRange: "Sep 2024 - May 2025",
+      bullets: [
+        "Mentored and supported 1-students in Machine Learning through project guidance, HW, and office hours.",
+      ],
+    },
+    {
+      company: "NYU TRIO Program",
+      title: "Tutor Leader",
+      dateRange: "Jan 2024 - May 2025",
+      bullets: [
+        "Conducted one-on-one tutoring sessions to strengthen students' understanding of core computer science courses.",
       ],
     },
   ],
   education: [
     {
-      school: "University Name",
-      degree: "Bachelor of Science in Computer Science",
-      dateRange: "2014 - 2018",
+      school: "Carnegie Mellon University",
+      degree: "MS, Artificial Intelligence Engineering",
+      dateRange: "Sep 2025 - Dec 2026",
       achievements: [
-        "Graduated Magna Cum Laude with 3.8 GPA",
-        "Dean's List all semesters",
-        "President of Computer Science Club",
+        "Specialized in AI Engineering and Machine Learning Systems",
+        "Focus on scalable AI infrastructure and production ML systems",
       ],
     },
     {
-      school: "Online Platform",
-      degree: "Full Stack Development Certificate",
-      dateRange: "2019",
+      school: "New York University",
+      degree: "BS, Computer Science, Minor: Math & Electrical Engineering",
+      dateRange: "Sep 2022 - May 2025",
       achievements: [
-        "Completed 500+ hours of coursework",
-        "Built 10+ portfolio projects",
-        "Specialized in React and Node.js",
+        "GPA: 3.9/4.0",
+        "NYU Yearly Dean List 22-23 & 23-24, 24-25",
+        "Founder of NYU Quant & Engineering & Math Community",
+        "Public Chair of NYU IEEE",
+        "E-board of NYUCSSA",
+        "HackNYU Hackathon Team",
       ],
     },
   ],

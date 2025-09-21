@@ -23,7 +23,25 @@ import { siteConfig } from "../config";
           {siteConfig.aboutMe}
         </p>
 
-        <div class="pt-4">
+        <div class="pt-6">
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-3">
+            Key words
+          </h3>
+          <div class="flex flex-wrap gap-3 mb-6">
+            {
+              siteConfig.keywords.map((keyword) => (
+                <span class="px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-50 text-blue-700 rounded-full text-sm sm:text-base md:text-lg font-medium hover:bg-blue-100 transition-colors duration-200 border border-blue-200">
+                  {keyword}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-3">
+            Tech Skills
+          </h3>
           <div class="flex flex-wrap gap-3">
             {
               siteConfig.skills.map((skill) => (

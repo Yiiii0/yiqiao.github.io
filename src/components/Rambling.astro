@@ -1,0 +1,211 @@
+---
+import { siteConfig } from "../config";
+const hasRambling = siteConfig.rambling && siteConfig.rambling.length > 0;
+
+// Sort rambling by date (newest first)
+const sortedRambling = siteConfig.rambling?.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) || [];
+
+// Get all unique tags
+const allTags = [...new Set(siteConfig.rambling?.map(item => item.tag) || [])];
+
+// Format date function
+function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('en-US', { 
+    month: 'short', 
+    day: 'numeric',
+    year: 'numeric'
+  });
+}
+
+// Tag color mapping
+const tagColors = {
+  'AI': '#3b82f6',     // Blue
+  'personal': '#10b981', // Green
+  'tech': '#f59e0b',   // Amber
+  'work': '#8b5cf6',   // Purple
+  'default': '#6b7280' // Gray
+};
+
+function getTagColor(tag) {
+  return tagColors[tag] || tagColors.default;
+}
+---
+
+{
+  hasRambling && (
+    <section id="rambling" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-gray-50">
+      <div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+          <div class="lg:col-span-4">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+            Some Rambling
+            </h2>
+            <div
+              class="w-[75px] h-[5px] mt-2 rounded-full"
+              style={`background-color: ${siteConfig.accentColor}`}
+            />
+            <p class="text-sm text-gray-500 mt-4">
+              Quick thoughts about myself or AI from recent learning, listening, and building.
+            </p>
+          </div>
+
+          <div class="lg:col-span-8">
+            <!-- Tag filter buttons -->
+            <div class="mb-4 flex flex-wrap gap-2">
+              <button 
+                class="tag-filter px-3 py-1 text-sm rounded-full border transition-all duration-200 active"
+                data-tag="all"
+                style="background-color: #f1f5f9; border-color: #cbd5e1; color: #475569;"
+              >
+                All
+              </button>
+              {allTags.map((tag) => (
+                <button 
+                  class="tag-filter px-3 py-1 text-sm rounded-full border transition-all duration-200"
+                  data-tag={tag}
+                  style={`background-color: ${getTagColor(tag)}20; border-color: ${getTagColor(tag)}40; color: ${getTagColor(tag)};`}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+            
+            <!-- Vertical scrollable container -->
+            <div class="relative">
+              <div 
+                class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-y-auto scroll-smooth"
+                style="height: 600px; scrollbar-width: thin; scrollbar-color: #cbd5e0 transparent;"
+              >
+                <div class="divide-y divide-gray-100">
+                  {sortedRambling.map((note, index) => (
+                    <div class={`rambling-item p-4 hover:bg-gray-50 transition-colors duration-200`} data-tag={note.tag}>
+                      <div class="flex items-start gap-3">
+                        <div class="flex-shrink-0 mt-1">
+                          <div 
+                            class="w-2 h-2 rounded-full"
+                            style={`background-color: ${getTagColor(note.tag)};`}
+                          ></div>
+                        </div>
+                        <div class="flex-grow min-w-0">
+                          <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-3">
+                              <time 
+                                class="text-sm font-medium text-gray-500"
+                                datetime={note.date}
+                              >
+                                {formatDate(note.date)}
+                              </time>
+                              <span 
+                                class="px-2 py-1 text-xs rounded-full font-medium"
+                                style={`background-color: ${getTagColor(note.tag)}20; color: ${getTagColor(note.tag)};`}
+                              >
+                                {note.tag}
+                              </span>
+                            </div>
+                          </div>
+                          <p class="text-base text-gray-700 leading-relaxed">
+                            {note.content}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <!-- Scroll hint -->
+              <div class="flex justify-center mt-2">
+                <div class="text-xs text-gray-400 flex items-center gap-1">
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                  </svg>
+                  Scroll for more
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.tag-filter');
+    const ramblingItems = document.querySelectorAll('.rambling-item');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const selectedTag = this.getAttribute('data-tag');
+        
+        // Update active state
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Filter items
+        ramblingItems.forEach(item => {
+          const itemTag = item.getAttribute('data-tag');
+          if (selectedTag === 'all' || itemTag === selectedTag) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  /* Custom scrollbar styling for webkit browsers */
+  .overflow-y-auto::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar-track {
+    background: #f8fafc;
+    border-radius: 3px;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 3px;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+    background: #a0aec0;
+  }
+  
+  /* Smooth scrolling behavior */
+  .overflow-y-auto {
+    scroll-behavior: smooth;
+  }
+  
+  /* Tag filter button styles */
+  .tag-filter {
+    cursor: pointer;
+  }
+  
+  .tag-filter:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tag-filter.active {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+    font-weight: 600;
+  }
+  
+  /* Animation for filtered items */
+  .rambling-item {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .rambling-item[style*="none"] {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+</style>
