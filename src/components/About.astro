@@ -8,6 +8,7 @@ import { siteConfig } from "../config";
       <div class="lg:col-span-4">
         <h2
           class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900"
+          data-i18n="aboutMeTitle"
         >
           About Me
         </h2>
@@ -19,12 +20,12 @@ import { siteConfig } from "../config";
       </div>
 
       <div class="lg:col-span-8 space-y-8">
-        <p class="text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-600">
-          {siteConfig.aboutMe}
+        <p class="text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-600" data-about-me>
+          {siteConfig.aboutMe.en}
         </p>
 
         <div class="pt-6">
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-3">
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-3" data-i18n="keywords">
             Key words
           </h3>
           <div class="flex flex-wrap gap-3 mb-6">
@@ -39,7 +40,7 @@ import { siteConfig } from "../config";
         </div>
 
         <div class="pt-2">
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-3">
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-3" data-i18n="techSkills">
             Tech Skills
           </h3>
           <div class="flex flex-wrap gap-3">
@@ -56,3 +57,13 @@ import { siteConfig } from "../config";
     </div>
   </div>
 </section>
+
+<script define:vars={{ siteConfig }}>
+  window.addEventListener('languageChange', (e) => {
+    const lang = e.detail.lang;
+    const aboutMeEl = document.querySelector('[data-about-me]');
+    if (aboutMeEl) {
+      aboutMeEl.textContent = siteConfig.aboutMe[lang] || siteConfig.aboutMe.en;
+    }
+  });
+</script>

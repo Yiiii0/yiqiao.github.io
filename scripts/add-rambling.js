@@ -10,26 +10,80 @@ const __dirname = path.dirname(__filename);
 // 获取命令行参数
 const args = process.argv.slice(2);
 
-if (args.length < 2) {
-  console.log('Usage: node add-rambling.js "content" "tag" [date]');
-  console.log('Example: node add-rambling.js "This is my thought" "AI" "2025-09-21"');
+if (args.length < 3) {
+  console.log('Usage: node add-rambling.js <type> <args...>');
+  console.log('');
+  console.log('Type: snippet or blog');
+  console.log('');
+  console.log('Snippet:');
+  console.log('  node add-rambling.js snippet "content_en" "content_zh" "tag" [date]');
+  console.log('  Example: node add-rambling.js snippet "English text" "中文文本" "AI" "2025-09-21"');
+  console.log('');
+  console.log('Blog:');
+  console.log('  node add-rambling.js blog "title_en" "title_zh" "summary_en" "summary_zh" "filename_base" "tag" [date]');
+  console.log('  Example: node add-rambling.js blog "EN Title" "ZH标题" "EN summary" "ZH摘要" "my-blog" "AI" "2025-09-21"');
+  console.log('');
+  console.log('Blog file structure:');
+  console.log('  - Create: my-blog.en.md and/or my-blog.md in src/content/blogs/');
+  console.log('  - Both languages: my-blog.en.md (English) + my-blog.md (Chinese)');
+  console.log('  - Single language: my-blog.md (will be used for both EN and ZH)');
+  console.log('  - Auto-fallback: If only one file exists, it will be used for both languages');
   process.exit(1);
 }
 
-const content = args[0];
-const tag = args[1];
-const date = args[2] || new Date().toISOString().split('T')[0]; // 默认今天
+const type = args[0];
+
+if (type !== 'snippet' && type !== 'blog') {
+  console.error('❌ Error: Type must be either "snippet" or "blog"');
+  process.exit(1);
+}
+
+let newEntry;
+
+if (type === 'snippet') {
+  const content = args[1];
+  const tag = args[2];
+  const date = args[3] || new Date().toISOString().split('T')[0];
+
+  newEntry = {
+    type: 'snippet',
+    date,
+    content,
+    tag
+  };
+} else if (type === 'blog') {
+  if (args.length < 5) {
+    console.error('❌ Error: Blog type requires title, summary, filename, and tag');
+    process.exit(1);
+  }
+
+  const title = args[1];
+  const summary = args[2];
+  const filename = args[3];
+  const tag = args[4];
+  const date = args[5] || new Date().toISOString().split('T')[0];
+
+  // Verify the markdown file exists
+  const blogFilePath = path.join(__dirname, '../src/content/blogs', filename);
+  if (!fs.existsSync(blogFilePath)) {
+    console.error(`❌ Error: Blog file not found at src/content/blogs/${filename}`);
+    console.error('Please create the markdown file first before adding the entry.');
+    process.exit(1);
+  }
+
+  newEntry = {
+    type: 'blog',
+    date,
+    title,
+    summary,
+    file: filename,
+    tag
+  };
+}
 
 // 读取现有数据
 const ramblingPath = path.join(__dirname, '../src/data/rambling.json');
 const ramblingData = JSON.parse(fs.readFileSync(ramblingPath, 'utf8'));
-
-// 创建新条目
-const newEntry = {
-  date,
-  content,
-  tag
-};
 
 // 添加到数组开头（最新的在前面）
 ramblingData.unshift(newEntry);
@@ -38,9 +92,16 @@ ramblingData.unshift(newEntry);
 fs.writeFileSync(ramblingPath, JSON.stringify(ramblingData, null, 2));
 
 console.log('✅ Rambling added successfully!');
-console.log('📝 Content:', content);
-console.log('🏷️ Tag:', tag);
-console.log('📅 Date:', date);
+console.log('📌 Type:', type);
+if (type === 'snippet') {
+  console.log('📝 Content:', newEntry.content);
+} else {
+  console.log('📝 Title:', newEntry.title);
+  console.log('📄 Summary:', newEntry.summary);
+  console.log('📁 File:', newEntry.file);
+}
+console.log('🏷️ Tag:', newEntry.tag);
+console.log('📅 Date:', newEntry.date);
 console.log('');
 console.log('💡 Next steps:');
 console.log('1. git add .');

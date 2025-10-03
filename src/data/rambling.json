@@ -1,32 +1,73 @@
 [
   {
-    "date": "2025-09-19",
-    "content": "Current chat interfaces are stuck in 2023 paradigms and severely limit what 2025 AI can actually deliver. We need to shift from conversational back-and-forth to command-driven agents that directly produce outcomes.",
-    "tag": "AI"
-  },
-  {
-    "date": "2025-08-25",
-    "content": "The GPT-5 Prompting Guide is a product upgrade designed to help API users build better products.",
-    "tag": "AI"
-  },
-  {
-    "date": "2025-07-29",
-    "content": "Working with the right people in a team with the right culture to do the right things is a heaven-sent happiness.",
+    "type": "blog",
+    "date": "2025-10-02",
+    "title": {
+      "en": "Evaluating B2B SaaS Moats: A Product Perspective",
+      "zh": "从产品视角看：B端SaaS的护城河判断框架"
+    },
+    "summary": {
+      "en": "Reflections on observing an AI startup project, distilling a framework for evaluating B2B SaaS competitive advantages.",
+      "zh": "观察AI创业项目的思考，提炼出判断B端SaaS护城河的判断框架。"
+    },
+    "file": {
+      "en": "ai-startup-moat.en.md",
+      "zh": "ai-startup-moat.md"
+    },
     "tag": "personal"
   },
   {
+    "type": "snippet",
+    "date": "2025-09-19",
+    "content": {
+      "en": "Current chat interfaces are stuck in 2023 paradigms and severely limit what 2025 AI can actually deliver. We need to shift from conversational back-and-forth to command-driven agents that directly produce outcomes.",
+      "zh": "当前的聊天界面仍停留在 2023 年的范式，严重限制了 2025 年 AI 的真正潜力。我们需要从对话往返转向直接产出结果的命令驱动 Agent。"
+    },
+    "tag": "AI"
+  },
+  {
+    "type": "snippet",
+    "date": "2025-08-25",
+    "content": {
+      "en": "The GPT-5 Prompting Guide is a product upgrade designed to help API users build better products.",
+      "zh": "GPT-5 Prompting Guide 是一次产品升级，旨在帮助 API 用户构建更好的产品。"
+    },
+    "tag": "AI"
+  },
+  {
+    "type": "snippet",
+    "date": "2025-07-29",
+    "content": {
+      "en": "Working with the right people in a team with the right culture to do the right things is a heaven-sent happiness.",
+      "zh": "与对的人、在对的团队文化中、做对的事情，是一种天赐的幸福。"
+    },
+    "tag": "personal"
+  },
+  {
+    "type": "snippet",
     "date": "2025-06-18",
-    "content": "At its core, AI/LLM represents a paradigm shift where natural language becomes the universal API for computational power—transforming human intent into compute resource orchestration.",
+    "content": {
+      "en": "At its core, AI/LLM represents a paradigm shift where natural language becomes the universal API for computational power—transforming human intent into compute resource orchestration.",
+      "zh": "AI/LLM 的核心是一次范式转变：自然语言成为计算能力的通用 API，将人类意图转化为计算资源编排。"
+    },
     "tag": "AI"
   },
   {
+    "type": "snippet",
     "date": "2025-05-24",
-    "content": "AI fundamentally boils down to decision-making systems that must own their outcomes—the real test isn't just accuracy, but accountability for consequences.",
+    "content": {
+      "en": "AI fundamentally boils down to decision-making systems that must own their outcomes—the real test isn't just accuracy, but accountability for consequences.",
+      "zh": "AI 本质上是必须为其结果负责的决策系统——真正的考验不仅是准确性，而是对后果的问责。"
+    },
     "tag": "AI"
   },
   {
+    "type": "snippet",
     "date": "2025-03-14",
-    "content": "The essence of an AI agent lies in three capabilities: multi-step decision making, tool invocation, and self-iteration—basically turning single queries into autonomous execution loops.",
+    "content": {
+      "en": "The essence of an AI agent lies in three capabilities: multi-step decision making, tool invocation, and self-iteration—basically turning single queries into autonomous execution loops.",
+      "zh": "AI Agent 的本质在于三种能力：多步决策、工具调用和自我迭代——本质上是将单次查询转变为自主执行循环。"
+    },
     "tag": "AI"
   }
 ]

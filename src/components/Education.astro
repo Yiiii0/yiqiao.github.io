@@ -1,6 +1,13 @@
 ---
 import { siteConfig } from "../config";
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+
+function getEN(value: any): any {
+  if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+    return value.en || '';
+  }
+  return value || '';
+}
 ---
 
 {
@@ -9,7 +16,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       <div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900" data-i18n="education">
               Education
             </h2>
             <div
@@ -20,12 +27,12 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
           <div class="lg:col-span-8">
             <div class="space-y-8">
-              {siteConfig.education.map((edu) => (
+              {siteConfig.education.map((edu, index) => (
                 <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow duration-300">
                   <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
                     <div>
-                      <h3 class="text-lg sm:text-xl font-semibold text-gray-900">
-                        {edu.degree}
+                      <h3 class="text-lg sm:text-xl font-semibold text-gray-900" data-edu-degree={index}>
+                        {getEN(edu.degree)}
                       </h3>
                       <p
                         class="text-base sm:text-lg"
@@ -39,8 +46,8 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                     </span>
                   </div>
 
-                  <ul class="space-y-2">
-                    {edu.achievements.map((achievement) => (
+                  <ul class="space-y-2" data-edu-achievements={index}>
+                    {getEN(edu.achievements).map((achievement: string) => (
                       <li class="flex items-start">
                         <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" />
                         <span class="text-sm sm:text-base text-gray-600">
@@ -58,3 +65,34 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     </section>
   )
 }
+
+<script define:vars={{ education: siteConfig.education }}>
+  function getLocalizedValue(value, lang) {
+    if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+      return value[lang] || value.en || '';
+    }
+    return value || '';
+  }
+
+  window.addEventListener('languageChange', (e) => {
+    const lang = e.detail.lang;
+
+    education.forEach((edu, index) => {
+      const degreeEl = document.querySelector(`[data-edu-degree="${index}"]`);
+      if (degreeEl) {
+        degreeEl.textContent = getLocalizedValue(edu.degree, lang);
+      }
+
+      const achievementsEl = document.querySelector(`[data-edu-achievements="${index}"]`);
+      if (achievementsEl) {
+        const achievements = getLocalizedValue(edu.achievements, lang);
+        achievementsEl.innerHTML = achievements.map(achievement =>
+          `<li class="flex items-start">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0"></span>
+            <span class="text-sm sm:text-base text-gray-600">${achievement}</span>
+          </li>`
+        ).join('');
+      }
+    });
+  });
+</script>

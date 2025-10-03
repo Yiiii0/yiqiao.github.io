@@ -24,4 +24,5 @@ pnpm-debug.log*
 .idea/
 
 resume/
-.vscode/
+.vscode/.claudedev_notes.md
+

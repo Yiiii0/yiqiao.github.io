@@ -13,11 +13,14 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   class="fixed top-0 left-0 right-0 z-50 hidden md:block transition-all duration-300"
 >
   <nav class="max-w-7xl mx-auto px-8 py-4">
-    <ul class="flex items-center gap-8 justify-center">
+    <div class="flex items-center justify-between">
+      <div class="flex-1"></div>
+      <ul class="flex items-center gap-8 justify-center flex-1">
       <li>
         <a
           href="#about"
           class="text-gray-700 hover:text-black transition-colors font-medium"
+          data-i18n="about"
         >
           About
         </a>
@@ -28,6 +31,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             <a
               href="#rambling"
               class="text-gray-700 hover:text-black transition-colors font-medium"
+              data-i18n="rambling"
             >
               Rambling
             </a>
@@ -40,6 +44,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             <a
               href="#experience"
               class="text-gray-700 hover:text-black transition-colors font-medium"
+              data-i18n="workExperience"
             >
               Work Experience
             </a>
@@ -52,6 +57,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             <a
               href="#research"
               class="text-gray-700 hover:text-black transition-colors font-medium"
+              data-i18n="researchTA"
             >
               Research & TA
             </a>
@@ -64,6 +70,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             <a
               href="#education"
               class="text-gray-700 hover:text-black transition-colors font-medium"
+              data-i18n="education"
             >
               Education
             </a>
@@ -76,6 +83,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             <a
               href="#projects"
               class="text-gray-700 hover:text-black transition-colors font-medium"
+              data-i18n="projects"
             >
               Projects
             </a>
@@ -83,6 +91,27 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
         )
       }
     </ul>
+
+    <!-- Language Switcher -->
+    <div class="flex-1 flex justify-end">
+      <div class="flex items-center gap-2 bg-gray-100 rounded-full p-1">
+        <button
+          id="lang-en"
+          class="lang-btn px-3 py-1 text-sm rounded-full transition-all duration-200 active"
+          data-lang="en"
+        >
+          EN
+        </button>
+        <button
+          id="lang-zh"
+          class="lang-btn px-3 py-1 text-sm rounded-full transition-all duration-200"
+          data-lang="zh"
+        >
+          中文
+        </button>
+      </div>
+    </div>
+  </div>
   </nav>
 </header>
 
@@ -95,10 +124,54 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       header?.classList.remove("bg-white/80", "backdrop-blur-sm");
     }
   });
+
+  // Language switching
+  const langButtons = document.querySelectorAll('.lang-btn');
+  langButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const lang = this.getAttribute('data-lang');
+
+      // Update active state
+      langButtons.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+
+      // Store language preference
+      localStorage.setItem('language', lang);
+
+      // Dispatch custom event for other components to listen
+      window.dispatchEvent(new CustomEvent('languageChange', { detail: { lang } }));
+    });
+  });
+
+  // Load saved language preference
+  const savedLang = localStorage.getItem('language') || 'en';
+  const langButton = document.querySelector(`[data-lang="${savedLang}"]`);
+  if (langButton) {
+    langButtons.forEach(btn => btn.classList.remove('active'));
+    langButton.classList.add('active');
+    window.dispatchEvent(new CustomEvent('languageChange', { detail: { lang: savedLang } }));
+  }
 </script>
 
 <style>
   html {
     scroll-behavior: smooth;
+  }
+
+  .lang-btn {
+    cursor: pointer;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  .lang-btn:hover {
+    color: #111827;
+  }
+
+  .lang-btn.active {
+    background-color: white;
+    color: #111827;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 </style>
